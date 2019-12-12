@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import styled from 'styled-components';
 
 import Item from './Item';
+import Pagination from './Pagination';
 
 const Center = styled.div`
   text-align: center;
@@ -34,6 +35,7 @@ class items extends Component {
   render() {
     return (
       <Center>
+        <Pagination page={this.props.page}></Pagination>
         <Query query={ALL_ITEMS_QUERY}>
           {({data, error, loading}) => {
             if(loading) return (<p>Loading...</p>)
@@ -47,6 +49,7 @@ class items extends Component {
             )
           }}
         </Query>
+        <Pagination page={this.props.page}></Pagination>
       </Center>
     );
   }
