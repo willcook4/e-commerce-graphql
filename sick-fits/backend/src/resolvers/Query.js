@@ -11,8 +11,6 @@ const Query = {
   itemsConnection: forwardTo('db'),
 
   me(parent, args, ctx, info) {
-    console.log('HERE nHER HERE HERE HERE')
-    console.log(ctx.request.userId)
     // Check if there is a current user ID
     if(!ctx.request.userId) {
       return null; 

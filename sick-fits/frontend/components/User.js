@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const CURRENT_USER_QUERY = gql`
   query {
-    me{
+    me {
       id
       email
       name
@@ -13,11 +13,13 @@ const CURRENT_USER_QUERY = gql`
   }
 `;
 
-const User = props => (
+const User = props => {
+  return (
   <Query {...props} query={CURRENT_USER_QUERY}>
     {payload => props.children(payload)}
   </Query>
-);
+  )
+};
 
 User.ProtoTypes = {
   children: PropTypes.func.isRequired,
