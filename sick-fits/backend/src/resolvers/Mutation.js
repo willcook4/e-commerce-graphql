@@ -91,6 +91,12 @@ const Mutations = {
     // return the user
     return user
   },
+
+  signout(parent, args, ctx, info) {
+    // clearCookie comes from the express package
+    ctx.response.clearCookie('token');
+    return { message: 'Goodbye' }
+  },
 };
 
 module.exports = Mutations;
