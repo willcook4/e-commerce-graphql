@@ -123,6 +123,7 @@ const Mutations = {
     return { message: 'Thanks!' }
     // Email the user the reset token
   },
+
   async resetPassword(parent, args, ctx, info) {
     // Check if the passwords match
     if(args.password !== args.confirmPassword) {

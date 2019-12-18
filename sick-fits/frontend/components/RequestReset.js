@@ -4,22 +4,18 @@ import gql from 'graphql-tag';
 
 import Form from './styles/Form';
 import Error from './ErrorMessage';
-import { CURRENT_USER_QUERY } from './User';
 
-const SIGNIN_MUTATION = gql`
-  mutation signin( $email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
-      id
-      email
-      name
+const REQUEST_RESET_MUTATION = gql`
+  mutation REQUEST_RESET_MUTATION( $email: String! ) {
+    requestReset(email: $email) {
+      message
     }
   }
 `
 
-class Signin extends Component {
+class RequestReset extends Component {
   state = {
-    email: '',
-    password: ''
+    email: ''
   }
 
   saveToState = (e) => {
@@ -29,23 +25,22 @@ class Signin extends Component {
   render() {
     return (
       <Mutation
-        mutation={SIGNIN_MUTATION}
-        variables={this.state}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
-        {(signin, {error, loading}) => {
+        mutation={REQUEST_RESET_MUTATION}
+        variables={this.state}>
+        {(reset, {error, loading, called}) => {
           return (
             <Form method='POST' onSubmit={async (e) => {
               e.preventDefault();
-              await signin();
+              await reset();
               this.setState({
-                email: '',
-                password: ''
+                email: '' 
               })
             }}>
               <fieldset disabled={loading} aria-busy={loading}>
-                <h2>Sign In</h2>
+                <h2>Request a password reset</h2>
                 <Error error={error} />
 
+                { !error && !loading && called && (<p>Sucess! Check your email for a reset link</p>)}
                 <label htmlFor="email">
                   Email
                   <input 
@@ -55,18 +50,8 @@ class Signin extends Component {
                     value={this.state.email} 
                     onChange={this.saveToState} />
                 </label>
-                
-                <label htmlFor="password">
-                  Password
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={this.state.password} 
-                    onChange={this.saveToState} />
-                </label>
 
-                <button type='submit'>Sign In!</button>
+                <button type='submit'>Request Reset!</button>
               </fieldset>
             </Form>
           )
@@ -76,4 +61,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default RequestReset;
