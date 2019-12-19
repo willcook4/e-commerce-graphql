@@ -119,7 +119,7 @@ const Mutations = {
         resetTokenExpiry
       }
     })
-    console.log(resp)
+    
     return { message: 'Thanks!' }
     // Email the user the reset token
   },
@@ -153,13 +153,16 @@ const Mutations = {
         resetTokenExpiry: null
       }
     })
+    
     // Generate the JWT
-    const token = jwt.sign({ userID: updatedUser.id}, process.env.APP_SECRET)
+    const token = jwt.sign({ userId: updatedUser.id}, process.env.APP_SECRET)
     // Set the JWT cookie
     ctx.response.cookie('token', token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365
     })
+    
+
     // Return the user
     return updatedUser
   }
