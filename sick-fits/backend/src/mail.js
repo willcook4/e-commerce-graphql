@@ -9,7 +9,7 @@ const transport = nodemailer.createTransport(
       pass: process.env.MAIL_PASS,
     },
     // debug: true,
-    secure: false
+    secure: false, // hack to get around mailtrap not using tls 
   }
 );
 
