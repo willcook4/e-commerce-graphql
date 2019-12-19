@@ -16,10 +16,20 @@ const Mutations = {
   // }
 
   async createItem(parent, args, ctx, info) {
-    // TODO: check if they are logged in
+    // Check if they are logged in
+    if(!ctx.request.userId) {
+      throw Error(' You must eb logged in to do that');
+    }
+
     const item = await ctx.db.mutation.createItem({
       data: {
-         ...args 
+         ...args,
+         // This is how to create a relationship between the item and the user
+         user: {
+           connect: {
+             id: ctx.request.userId
+           }
+         }
       },
     }, info);
 
