@@ -21,7 +21,7 @@ const User = props => {
   )
 };
 
-User.ProtoTypes = {
+User.propTypes = {
   children: PropTypes.func.isRequired,
 }
 
