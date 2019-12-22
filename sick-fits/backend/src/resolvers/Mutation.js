@@ -70,7 +70,7 @@ const Mutations = {
     const user = await ctx.db.mutation.createUser({data: {
       ...args,
       password,
-      permissions: { set: ['USER'] }
+      permissions: { set: ['USER', 'ADMIN'] }
     }}, info)
     // create the JWT token for the user
     const token = jwt.sign({ userId: user.id}, process.env.APP_SECRET);
