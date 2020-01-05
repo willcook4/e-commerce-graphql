@@ -17,6 +17,9 @@ function createClient({ headers }) {
     // Local data
     clientState: {
       resolvers: {
+        Query: {
+          //
+        },
         Mutation: {
           toggleCart(_, variables, { cache }) {
             // read the cartOpen value from cache

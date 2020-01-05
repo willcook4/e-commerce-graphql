@@ -8,7 +8,7 @@ import CloseButton from './styles/CloseButton'
 import SickButton from './styles/SickButton'
 
 const LOCAL_STATE_QUERY = gql`
-  query{
+  query {
     cartOpen @client
   }
 `;
