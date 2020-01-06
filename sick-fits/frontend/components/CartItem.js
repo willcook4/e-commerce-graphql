@@ -19,7 +19,6 @@ const CartItemStyles = styled('li')`
 `;
 
 const CartItem = ({ cartItem }) => {
-  console.log('DDF ', cartItem)
   return (
     <CartItemStyles>
       <img width="100" src={cartItem.item.image} alt={cartItem.item.title} />
