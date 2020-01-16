@@ -28,10 +28,10 @@ function totalItems (cart) {
 }
 
 class TakeMyMoney extends React.Component {
-  onToken = (resp, createOrder) => {
+  onToken = async (resp, createOrder) => {
     console.log('res.id::: ', resp.id)
     // manually call the mutation
-    createOrder({
+    const order = await createOrder({
       variables: {
         token: resp.id
       }
@@ -39,6 +39,8 @@ class TakeMyMoney extends React.Component {
       alert(err.message)
       console.log(JSON.stringify(err))
     })
+
+    console.log(order)
   }
 
   render () {
