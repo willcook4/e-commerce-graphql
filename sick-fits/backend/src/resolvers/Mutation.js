@@ -4,6 +4,7 @@ const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { transport, makeANiceEmail } = require('../mail');
 const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 
 const Mutations = {
   // createDog(parent, args, ctx, info) {
@@ -76,7 +77,7 @@ const Mutations = {
     const user = await ctx.db.mutation.createUser({data: {
       ...args,
       password,
-      permissions: { set: ['USER', 'ADMIN'] }
+      permissions: { set: ['USER'] }
     }}, info)
     // create the JWT token for the user
     const token = jwt.sign({ userId: user.id}, process.env.APP_SECRET);
@@ -288,6 +289,49 @@ const Mutations = {
         id: args.id
       }
     }, info)
+  },
+
+  async createOrder(parent, args, ctx, info) {
+    // Query current user, are they signed in?
+    const { userId } = ctx.request;
+    if(!userId) {
+      throw new Error('You must be signed in to complete this order');
+    }
+
+    const user = await ctx.db.query.user(
+      { where: { id: userId } }, 
+      `{
+      id
+      name
+      email
+      cart { 
+        id
+        quantity
+        item { 
+          title 
+          price 
+          id 
+          description 
+          image
+        }
+      }}`)
+    // recalculate the price from the backend
+    const amount = user.cart.reduce(
+      (tally, cartItem) => tally + cartItem.item.price * cartItem.quantity,
+      0
+    )
+    console.log(`Going to charge for a total of ${amount} for (token: ${args.token})`)
+    // create the stripe charge ( turn token into money )
+    const charge = await stripe.charges.create({
+      amount,
+      currency: 'NZD',
+      source: args.token,
+      description: 'Sicfits Online Purchase'
+    })
+    // convert the cartitems to orderitems
+    // create the order
+    // clean up the cart, delete cart items
+    // return the order to the client
   }
 };
 
