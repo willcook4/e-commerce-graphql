@@ -1,15 +1,28 @@
+
 import ItemComponent from '../components/Item';
 import { shallow } from 'enzyme';
+import toJSON from 'enzyme-to-json';
 
 const fakeItem = {
   id: 'ABCD123',
   title: 'A cool item',
-  price: 5000,
+  price: 4000,
   description: 'This is a really cool item',
   image: 'dog.jpg',
   largeImage: 'largedog.jpg'
 }
 
+describe('<Item/>', () => {
+  it('renders and matches the snapshot', () => {
+      const wrapper = shallow(<ItemComponent item={fakeItem} />)
+      expect(toJSON(wrapper)).toMatchSnapshot()
+    })
+})
+
+/** 
+ *  SHALLOW TESTING
+ * 
+ * 
 describe('<Item/>', () => {
   it('renders the image properly', () => {
     const wrapper = shallow(<ItemComponent item={fakeItem} />)
@@ -46,3 +59,5 @@ describe('<Item/>', () => {
     expect(buttonList.find('DeleteItem').exists()).toBe(true)
   })
 })
+
+*/
