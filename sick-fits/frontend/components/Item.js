@@ -6,7 +6,7 @@ import Title from './styles/Title';
 import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
-import DeleteButton from '../components/DeleteItem';
+// import DeleteButton from '../components/DeleteItem';
 import DeleteItem from '../components/DeleteItem';
 import AddToCart from '../components/AddToCart';
 
