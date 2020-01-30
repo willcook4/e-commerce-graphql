@@ -13,7 +13,7 @@ const Nav = () => (
       {({ data }) => {
         const me = data ? data.me : null
         return (
-          <NavStyles>
+          <NavStyles data-test="nav"> 
           <Link href="/items">
             <a>Shop</a>
           </Link>

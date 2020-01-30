@@ -1,5 +1,4 @@
 import { mount } from 'enzyme'
-import toJSON from 'enzyme-to-json'
 import wait from 'waait'
 import { MockedProvider } from 'react-apollo/test-utils'
 import { fakeUser } from '../lib/testUtils'
@@ -39,11 +38,9 @@ describe('<PleaseSignIn/>' , () => {
         <PleaseSignIn />
       </MockedProvider>
     )
-    // console.log(wrapper.debug())
     expect(wrapper.text()).toContain( 'Loading...')
     await wait(0)
     wrapper.update()
-    // console.log(wrapper.debug())
     expect(wrapper.text()).toContain('Please sign in before continuing!')
     expect(wrapper.find('Signin').exists()).toBe(true)
   })
@@ -60,8 +57,6 @@ describe('<PleaseSignIn/>' , () => {
 
     await wait(0) 
     wrapper.update()
-    console.log(wrapper.debug())
-    // expect(wrapper.find('Hey').exists()).toBe(true)
     expect(wrapper.contains(<Hey/ >)).toBe(true)
   })
 })
