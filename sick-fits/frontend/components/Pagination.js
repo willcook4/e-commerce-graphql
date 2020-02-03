@@ -27,7 +27,7 @@ const Pagination = (props) => (
       const currentPage = props.page
       
       return (
-        <PaginationStyles>
+        <PaginationStyles data-test='pagination'>
           <Head>
             <title>Sick Fits! - Page {currentPage} of {pages}</title>
           </Head>
@@ -44,7 +44,8 @@ const Pagination = (props) => (
               aria-disabled={currentPage <= 1}
             >← Prev</a>
           </Link>
-          <p>Page {currentPage} of { pages }!</p>
+          <p>Page {currentPage} of 
+          <span className='total-pages'>{ pages }</span>!</p>
           <p>Count {count} Items Total</p>
           <Link
             prefetch
@@ -55,7 +56,7 @@ const Pagination = (props) => (
               }
             }}>
             <a
-              className="prev"
+              className="next"
               aria-disabled={currentPage >= pages}
             >Next →</a>
           </Link>
@@ -66,3 +67,4 @@ const Pagination = (props) => (
 )
 
 export default Pagination;
+export { PAGIANTION_QUERY };
