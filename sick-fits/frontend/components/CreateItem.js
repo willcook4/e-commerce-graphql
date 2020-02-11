@@ -50,7 +50,7 @@ class CreateItem extends Component {
 
 
   uploadFile = async(e) => {
-    console.log('uploading file...')
+    // console.log('uploading file...')
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
@@ -58,7 +58,7 @@ class CreateItem extends Component {
 
     const resp = await fetch('https://api.cloudinary.com/v1_1/ds9ilvxm8/image/upload', { method: 'POST', body: data })
     const file = await resp.json();
-    console.log('file: ', file)
+    // console.log('file: ', file)
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url
@@ -69,13 +69,15 @@ class CreateItem extends Component {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
       {(createItem, { loading, error }) => (
-        <Form onSubmit={async (e) => {
+        <Form
+          data-test="form"
+          onSubmit={async (e) => {
           // Stop the form from submitting
           e.preventDefault();
           // Call the mutation
           const resp = await createItem();
           // Direct the user to the single item page
-          console.log(resp)
+          // console.log(resp)
           Router.push({
             pathname: '/item',
             query: { id: resp.data.createItem.id }
