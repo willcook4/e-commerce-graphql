@@ -40,7 +40,9 @@ const fakeOrder = () => ({
   charge: 'ch_123',
   total: 40000,
   items: [fakeOrderItem(), fakeOrderItem()],
-  createdAt: '2018-04 - 06T19: 24: 16.000Z',
+  // createdAt: '2018-04 - 06T19: 24: 16.000Z',
+  // createdAt is now throwing an error for format replaced with a copy of Date()
+  createdAt: 'Thu Feb 13 2020 10:56:46 GMT+1300 (New Zealand Daylight Time)',
   user: fakeUser(),
 });
 
