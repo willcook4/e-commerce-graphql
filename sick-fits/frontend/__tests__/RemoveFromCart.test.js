@@ -4,7 +4,7 @@ import toJSON from 'enzyme-to-json'
 import { ApolloConsumer } from 'react-apollo'
 import { MockedProvider } from 'react-apollo/test-utils'
 import RemoveFromCart, { REMOVE_FROM_CART_MUTATION } from '../components/RemoveFromCart'
-import Cart, { LOCAL_STATE_QUERY } from '../components/Cart'
+// import Cart, { LOCAL_STATE_QUERY } from '../components/Cart'
 import { CURRENT_USER_QUERY } from '../components/User'
 import { fakeUser, fakeCartItem } from '../lib/testUtils'
 
