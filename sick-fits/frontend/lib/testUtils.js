@@ -1,7 +1,7 @@
 import casual from 'casual';
 
 // seed it so we get consistent results
-casual.seed(777);
+casual.seed(777); // was 777
 
 const fakeItem = () => ({
   __typename: 'Item',
