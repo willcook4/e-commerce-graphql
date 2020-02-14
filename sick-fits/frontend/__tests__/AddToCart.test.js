@@ -4,10 +4,8 @@ import toJSON from 'enzyme-to-json'
 import { ApolloConsumer } from 'react-apollo'
 import { MockedProvider } from 'react-apollo/test-utils'
 import AddToCart, { ADD_TO_CART_MUTATION } from '../components/AddToCart'
-import Cart, { LOCAL_STATE_QUERY } from '../components/Cart'
 import { CURRENT_USER_QUERY } from '../components/User'
 import { fakeUser, fakeCartItem } from '../lib/testUtils'
-import { ApolloClient } from 'apollo-boost'
 
 const mocks = [{
   request: {
