@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
-
+import NProgress from 'nprogress';
 import Form from './styles/Form';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
@@ -34,23 +34,33 @@ class CreateItem extends Component {
     description: '',
     image: '',
     largeImage: '',
-    price: 0
+    price: 0,
     // title: 'Cool Shoes',
     // description: 'I love those shoes',
     // image: 'dog.jpg',
     // largeImage: 'large-dog.jpg',
     // price: 1000
-  };
+  }; 
 
   handleChange = (e) => {
     const  { name, type, value } = e.target;
-    const val = type === 'number' ? parseFloat(value) : value;
+    let val
+    if(type === 'number'){
+      if(value) {
+        val = parseFloat(value)
+      } else {
+        val = 0
+      }
+    } else {
+      val = value
+    }
+    
     this.setState({[name]: val});
   } 
 
-
   uploadFile = async(e) => {
     // console.log('uploading file...')
+    NProgress.start()
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
@@ -59,10 +69,16 @@ class CreateItem extends Component {
     const resp = await fetch('https://api.cloudinary.com/v1_1/ds9ilvxm8/image/upload', { method: 'POST', body: data })
     const file = await resp.json();
     // console.log('file: ', file)
-    this.setState({
-      image: file.secure_url,
-      largeImage: file.eager[0].secure_url
-    });
+    if(file){
+      this.setState({
+        image: file.secure_url,
+        largeImage: file.eager[0].secure_url
+      }, () => {
+        NProgress.done()
+      });
+    } else {
+      NProgress.done();
+    }
   }
 
   render() {
@@ -113,7 +129,7 @@ class CreateItem extends Component {
             </label>
 
             <label htmlFor='price'>
-              Price
+              Price {this.state.price ? `(${formatMoney(this.state.price)})` : null}
               <input
                 type="number"
                 id="price"
