@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CartItem /> renders and matches the snapshot 1`] = `
+<li
+  className="CartItem__CartItemStyles-sc-1rm9l7o-0 iguiiv"
+>
+  <img
+    alt="dogs are best"
+    src="dog-small.jpg"
+    width="100"
+  />
+  <div
+    className="cart-item-details"
+  >
+    <h3>
+      dogs are best
+    </h3>
+    <p>
+      $150
+       - 
+      <em>
+        3
+         × 
+        $50
+         each
+      </em>
+    </p>
+  </div>
+  <RemoveFromCart
+    id="omg123"
+  >
+    <Mutation
+      mutation={
+        Object {
+          "definitions": Array [
+            Object {
+              "directives": Array [],
+              "kind": "OperationDefinition",
+              "name": Object {
+                "kind": "Name",
+                "value": "removeFromCart",
+              },
+              "operation": "mutation",
+              "selectionSet": Object {
+                "kind": "SelectionSet",
+                "selections": Array [
+                  Object {
+                    "alias": undefined,
+                    "arguments": Array [
+                      Object {
+                        "kind": "Argument",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "id",
+                        },
+                        "value": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "id",
+                          },
+                        },
+                      },
+                    ],
+                    "directives": Array [],
+                    "kind": "Field",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "removeFromCart",
+                    },
+                    "selectionSet": Object {
+                      "kind": "SelectionSet",
+                      "selections": Array [
+                        Object {
+                          "alias": undefined,
+                          "arguments": Array [],
+                          "directives": Array [],
+                          "kind": "Field",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "id",
+                          },
+                          "selectionSet": undefined,
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+              "variableDefinitions": Array [
+                Object {
+                  "defaultValue": undefined,
+                  "directives": Array [],
+                  "kind": "VariableDefinition",
+                  "type": Object {
+                    "kind": "NonNullType",
+                    "type": Object {
+                      "kind": "NamedType",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "ID",
+                      },
+                    },
+                  },
+                  "variable": Object {
+                    "kind": "Variable",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "id",
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+          "kind": "Document",
+          "loc": Object {
+            "end": 88,
+            "start": 0,
+          },
+        }
+      }
+      optimisticResponse={
+        Object {
+          "__typename": "Mutation",
+          "removeFromCart": Object {
+            "__typename": "CartItem",
+            "id": "omg123",
+          },
+        }
+      }
+      update={[Function]}
+      variables={
+        Object {
+          "id": "omg123",
+        }
+      }
+    >
+      <RemoveFromCart__BigButton
+        disabled={false}
+        onClick={[Function]}
+        title="Delete Item"
+      >
+        <button
+          className="RemoveFromCart__BigButton-emvtd6-0 gPWNSn"
+          disabled={false}
+          onClick={[Function]}
+          title="Delete Item"
+        >
+          ×
+        </button>
+      </RemoveFromCart__BigButton>
+    </Mutation>
+  </RemoveFromCart>
+</li>
+`;
