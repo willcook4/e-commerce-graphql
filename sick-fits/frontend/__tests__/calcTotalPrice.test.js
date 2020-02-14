@@ -1,7 +1,7 @@
 import calcTotalPrice from '../lib/calcTotalPrice'
 import { fakeCartItem, fakeItem } from '../lib/testUtils'
 
-describe.only('calcTotalPrice Function', () => {
+describe('calcTotalPrice Function', () => {
   it('handles an empty cart(0 cart items)', () => {
     expect(calcTotalPrice([])).toEqual(0)
   })
