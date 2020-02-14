@@ -3,7 +3,7 @@ import casual from 'casual';
 // seed it so we get consistent results
 casual.seed(777); // was 777
 
-const fakeItem = () => ({
+const fakeItem = (overrides) => ({
   __typename: 'Item',
   id: 'abc123',
   price: 5000,
@@ -12,6 +12,7 @@ const fakeItem = () => ({
   title: 'dogs are best',
   description: 'dogs',
   largeImage: 'dog.jpg',
+  ...overrides
 });
 
 const fakeUser = () => ({
