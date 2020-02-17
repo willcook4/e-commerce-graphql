@@ -12,3 +12,12 @@ The best place to get help is in the #advanced-react slack room - there is a lin
 
 **Q:** Which Extensions for VS Code is Wes using?  
 **A:** All my extensions are listed on [my dotfiles repo](https://github.com/wesbos/dotfiles), but specifically this course uses [ESLint](https://github.com/Microsoft/vscode-eslint) and [Prettier](https://github.com/prettier/prettier-vscode).
+
+
+## Notes
+- Deploy the backend. (From the top level folder):
+  ```git subtree push --prefix sick-fits/backend heroku-backend master```
+
+- Deploy the frontend. (From the top level folder):
+  ```git subtree push --prefix sick-fits/frontend heroku-frontend master```
+  

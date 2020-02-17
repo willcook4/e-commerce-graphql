@@ -46,7 +46,7 @@ exports[`<CreateItem /> renders and matches the snapshot 1`] = `
     <label
       htmlFor="price"
     >
-      Price
+      Price 
       <input
         id="price"
         name="price"
