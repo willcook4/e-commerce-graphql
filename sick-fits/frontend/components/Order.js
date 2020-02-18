@@ -41,7 +41,7 @@ class Order extends React.Component {
           if (error) return <Error error={error} />;
           if (loading) return <p>Loading...</p>;
           const order = data.order;
-          // console.log(order)
+          
           return (
             <OrderStyles data-test="order">
               <Head>

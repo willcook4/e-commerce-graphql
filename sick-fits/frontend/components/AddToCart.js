@@ -24,11 +24,18 @@ class AddToCart extends Component {
         }}
         refetchQueries={[{query: CURRENT_USER_QUERY}]}
       >
-        {(addToCart, { loading }) => (
-          <button
+        {(addToCart, { loading }) => {
+          return (<button
             disabled={loading}
-            onClick={addToCart}>Add{loading && 'ing'} to Cart {loading ? `🕓`: `➕`}</button>
-        )}
+            onClick={() => {
+              addToCart()
+                .catch(err => {
+                   // typical error == 'You must be signed in to add an item to your cart'
+                  alert(err.message.replace('GraphQL error: ', ''))
+                })
+            }}>Add{loading && 'ing'} to Cart {loading ? `🕓`: `➕`}</button>
+          )
+        }}
       </Mutation>
     );
   }

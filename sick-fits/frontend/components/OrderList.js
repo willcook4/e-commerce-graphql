@@ -46,10 +46,10 @@ class OrderList extends Component {
          {({ data: { orders }, loading, error }) => {
           if(loading) return (<p>Loading...</p>)
           if(error) return (<Error error={error} />)
-          
+      
           return (
             <div>
-              <h2>You have: {orders.length} orders</h2>
+              <h2>You have: {orders.length} order{orders.length === 1 ? '' : 's'}</h2>
               <OrderUL>
                 {orders.map(order => (
                   <OrderItemStyles key={order.id}>
@@ -61,10 +61,10 @@ class OrderList extends Component {
                     >
                       <a>
                         <div className="order-meta">
-                          <p>{order.items.reduce((a, b) => a + b.quantity, 0)} Items</p>
-                          <p>{order.items.length} Products</p>
-                          <p>{formatDistance(new Date(order.createdAt), new Date())}</p>
-                          <p>{formatMoney(order.total)}</p>
+                          <p>{order.items.reduce((a, b) => a + b.quantity, 0)} Item{order.items.reduce((a, b) => a + b.quantity, 0) === 1 ? '' : 's'}</p>
+                          <p>{order.items.length} Product{order.items.length === 1 ? '' : 's'}</p>
+                          <p>{formatDistance(new Date(order.createdAt), new Date())} ago</p>
+                          <p>Total {formatMoney(order.total)}</p>
                         </div>
                         <div className='images'>
                           {order.items.map(item => (

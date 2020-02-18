@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 
 const theme = {
-  red: '#FF0000',
+  red: '#0087ff',
   black: '#393939',
   grey: '#3A3A3A',
   lightGrey: '#E1E1E1',

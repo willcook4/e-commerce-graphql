@@ -34,16 +34,18 @@ class DeleteItem extends Component {
           id: this.props.id
         }}
         update={this.update}>
-          {(deleteItem, {error}) => (
-            <button 
-              onClick={() => {
-                if( confirm('Are you sure you want to delete this?') ) {
-                  deleteItem().catch(err => {
-                    alert(err.message)
-                  });
-                }
-              }}>{this.props.children}</button>
-          )}
+          {(deleteItem, {}) => {
+            return (
+              <button 
+                onClick={() => {
+                  if( confirm('Are you sure you want to delete this?') ) {
+                    deleteItem()
+                      .catch(err => {
+                        alert(err.message.replace('GraphQL error: ', ''))
+                    });
+                  }
+                }}>{this.props.children}</button>
+            )}}
       </Mutation>
     );
   }

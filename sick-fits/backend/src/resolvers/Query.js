@@ -45,10 +45,24 @@ const Query = {
         id: args.id
       }
     }, info)
+    
+    if(!order) {
+      throw new Error('No order found')
+    }
+
     // check if they have the permissions to see this order
-    const ownsOrder = order.user.id === ctx.request.userId
-    const hasPermissionToSeeOrder = ctx.request.user.permissions.includes('ADMIN');
-    if(!ownsOrder || !hasPermissionToSeeOrder) {
+    let ownsOrder = false // default to false 
+    if(ctx.request.userId) {
+      ownsOrder = order.user.id === ctx.request.userId
+    }
+    
+    let hasPermissionToSeeOrder = false // default to false
+    if(ctx.request.user) {
+      hasPermissionToSeeOrder = ctx.request.user.permissions.includes('ADMIN');  
+    }
+    console.log('ownsOrder: ', ownsOrder)
+    console.log('hasPermissionToSeeOrder: ', hasPermissionToSeeOrder)
+    if(!ownsOrder && !hasPermissionToSeeOrder) {
       throw new Error('You cant see this, not your order or not admin')
     }
     // return the order
