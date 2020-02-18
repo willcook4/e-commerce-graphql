@@ -4,7 +4,7 @@
 
 These are the starter files and stepped solutions for the [Advanced React & GraphQL](https://AdvancedReact.com) course by [Wes Bos](https://WesBos.com/).
 
-Will's Sickfits [demo site is available here]('https://sickfits-reactprod.herokuapp.com')
+Will's Sickfits [demo site is available here](https://sickfits-reactprod.herokuapp.com)
 
 Complete project folder is ```/sick-fits```
 
@@ -54,5 +54,12 @@ Showing the checkout:
   ```git subtree push --prefix sick-fits/frontend heroku-frontend master```
   
 ## Known Issues
-- After adding an item to the store the Cache is not auto-updated. A refresh is required to see that item in the store. This is due to the way Apollo handles mutation.
 
+- After adding an item to the store the item is not auto-updated. A refresh is required to see that item in the store. This is due to the way Apollo v1 works and will be fixed in v3.
+
+## Updates to do
+
+- After updating an item the user should be returned to the item show page.
+- On the item edit page the money amount is not shown the same ($xx.xx) as on the create page.
+- images in the orders page do not scale correctly, change to 'object-fit: contain;'
+- No content on the Account (/me) page.
